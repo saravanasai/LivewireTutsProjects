@@ -39,3 +39,12 @@ Route::group(['prefix'=>'calculater','as'=>'calculater.'],function(){
 
 });
 
+Route::group(['prefix'=>'todo-application','as'=>'todo.'],function(){
+
+    Route::get('/', function () {
+        return view('App.Todos.index');
+    })->name('index');
+
+
+
+});

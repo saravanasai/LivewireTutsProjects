@@ -30,6 +30,8 @@
                         href="{{ route('counter.index') }}">Counter</a>
                     <a class="nav-link {{ Request::segment(1) == 'calculater' ? 'active text-white' : '' }}" aria-current="page"
                     href="{{ route('calculater.index') }}">Calculater</a>
+                    <a class="nav-link {{ Request::segment(1) == 'todo-application' ? 'active text-white' : '' }}" aria-current="page"
+                    href="{{ route('todo.index') }}">Todos</a>
                 </div>
             </div>
         </div>
