@@ -32,6 +32,11 @@
                     href="{{ route('calculater.index') }}">Calculater</a>
                     <a class="nav-link {{ Request::segment(1) == 'todo-application' ? 'active text-white' : '' }}" aria-current="page"
                     href="{{ route('todo.index') }}">Todos</a>
+                    <a class="nav-link {{ Request::segment(1) == 'dependent-dropdown' ? 'active text-white' : '' }}" aria-current="page"
+                    href="{{ route('dependent-dropdown.index') }}">Dependent Dropdown</a>
+                    <a class="nav-link {{ Request::segment(1) == 'employee' ? 'active text-white' : '' }}" aria-current="page"
+                    href="{{ route('employee.index') }}">Employee Grid</a>
+
                 </div>
             </div>
         </div>
@@ -40,7 +45,10 @@
     <div class="container-fluid">
         @yield('content')
     </div>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @livewireScripts
+    @yield('scripts')
 </body>
 
 </html>
