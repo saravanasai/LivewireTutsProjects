@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ChatBotApp\ChatBot;
 use App\Models\EmployeeApp\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +60,38 @@ Route::group(['prefix' => 'employee', 'as' => 'employee.'], function () {
     Route::put('/update/{id}', function (Request $request, $id) {
 
         Employee::find($id)->update(["{$request->column}" => $request->info]);
-
     })->name('update');
+});
+
+Route::group(['prefix' => 'bot-trainer', 'as' => 'bot-trainer.'], function () {
+
+    Route::get('/', function () {
+        return view('App.bot-trainer.index');
+    })->name('index');
+});
+
+Route::group(['prefix' => 'chat-bot', 'as' => 'chat-bot.'], function () {
+
+    Route::get('/', function () {
+        return view('App.chat-bot.index');
+    })->name('index');
+
+    Route::post('send-message',function(Request $request){
+
+        $query = ChatBot::query();
+
+       $reponse=$query->where('question', 'LIKE', '%' . $request->message . '%')->first('answer');
+
+        if($reponse)
+        {
+
+        sleep(rand(1,5));
+
+        return response()->json(["data"=>$reponse],200);
+        }
+        return response()->json(["data"=>"Sry I cannot Answer this"],200);
+
+
+    })->name('sendMessage');
+
 });

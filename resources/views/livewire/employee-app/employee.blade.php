@@ -12,6 +12,7 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Phone</th>
+                                <th scope="col">Address</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,6 +28,11 @@
                                         wire:click="toggleContentEditable({{ $employee->id }})"
                                         x-on:blur="toggleContentEditableFalse('phone_{{ $employee->id }}',{{ $employee->id }},'phone')"
                                         id="phone_{{ $employee->id }}">{{ $employee->phone }}</td>
+                                    <td contenteditable="{{ $editableId == $employee->id ? 'true' : 'false' }}"
+                                        wire:click="toggleContentEditable({{ $employee->id }})"
+                                        x-on:blur="toggleContentEditableFalse('address_{{ $employee->id }}',{{ $employee->id }},'address')"
+                                        id="address_{{ $employee->id }}">{{ $employee->address }}</td>
+
                                 </tr>
                             @endforeach
                         </tbody>
@@ -50,6 +56,7 @@
         function gridData() {
 
             return {
+
                 employeedetail: '',
 
                 toggleContentEditableFalse(id, rowid, column) {
@@ -65,6 +72,9 @@
                     if (column == 'phone') {
                         this.employeedetail = editableRowCell.innerText
                     }
+                    if (column == 'address') {
+                        this.employeedetail = editableRowCell.innerText
+                    }
 
 
 
@@ -77,6 +87,16 @@
 
                     axios.put('{{ route('employee.update', '') }}/' + rowid, data).then(e => {
 
+                        if (e.status == 200) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Your work has been saved',
+                                showConfirmButton: false,
+                                toast: true,
+                                timer: 1500
+                            })
+                        }
                     })
 
                 },

@@ -19,23 +19,27 @@
 <body>
     <nav class="navbar navbar-expand-sm navbar-light bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{route('home')}}">Livewire Tuts</a>
+            <a class="navbar-brand" href="{{ route('home') }}">Livewire Tuts</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
                 aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarID">
                 <div class="navbar-nav">
-                    <a class="nav-link {{ Request::segment(1) == 'counter' ? 'active text-white' : '' }}" aria-current="page"
-                        href="{{ route('counter.index') }}">Counter</a>
-                    <a class="nav-link {{ Request::segment(1) == 'calculater' ? 'active text-white' : '' }}" aria-current="page"
-                    href="{{ route('calculater.index') }}">Calculater</a>
-                    <a class="nav-link {{ Request::segment(1) == 'todo-application' ? 'active text-white' : '' }}" aria-current="page"
-                    href="{{ route('todo.index') }}">Todos</a>
-                    <a class="nav-link {{ Request::segment(1) == 'dependent-dropdown' ? 'active text-white' : '' }}" aria-current="page"
-                    href="{{ route('dependent-dropdown.index') }}">Dependent Dropdown</a>
-                    <a class="nav-link {{ Request::segment(1) == 'employee' ? 'active text-white' : '' }}" aria-current="page"
-                    href="{{ route('employee.index') }}">Employee Grid</a>
+                    <a class="nav-link {{ Request::segment(1) == 'counter' ? 'active text-white' : '' }}"
+                        aria-current="page" href="{{ route('counter.index') }}">Counter</a>
+                    <a class="nav-link {{ Request::segment(1) == 'calculater' ? 'active text-white' : '' }}"
+                        aria-current="page" href="{{ route('calculater.index') }}">Calculater</a>
+                    <a class="nav-link {{ Request::segment(1) == 'todo-application' ? 'active text-white' : '' }}"
+                        aria-current="page" href="{{ route('todo.index') }}">Todos</a>
+                    <a class="nav-link {{ Request::segment(1) == 'dependent-dropdown' ? 'active text-white' : '' }}"
+                        aria-current="page" href="{{ route('dependent-dropdown.index') }}">Dependent Dropdown</a>
+                    <a class="nav-link {{ Request::segment(1) == 'employee' ? 'active text-white' : '' }}"
+                        aria-current="page" href="{{ route('employee.index') }}">Employee Grid</a>
+                    <a class="nav-link {{ Request::segment(1) == 'bot-trainer' ? 'active text-white' : '' }}"
+                        aria-current="page" href="{{ route('bot-trainer.index') }}">Bot Trainer</a>
+                        <a class="nav-link {{ Request::segment(1) == 'chat-bot' ? 'active text-white' : '' }}"
+                        aria-current="page" href="{{ route('chat-bot.index') }}">Chat Bot</a>
 
                 </div>
             </div>
@@ -46,7 +50,10 @@
         @yield('content')
     </div>
     <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @livewireScripts
     @yield('scripts')
 </body>
