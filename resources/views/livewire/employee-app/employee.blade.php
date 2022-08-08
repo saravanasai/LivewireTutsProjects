@@ -5,6 +5,13 @@
         </div>
         <div class="card-body m-2">
             <div class="row">
+                <div class="col-md-6 offset-md-6">
+                    <label class="form-label" for="invalidCheck">Search</label>
+                    <input class="form-input" type="text" wire:model="search" placeholder="Name / Phone " id="invalidCheck" >
+
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <table class="table">
                         <thead>
@@ -43,9 +50,8 @@
 
         </div>
         <div class="card-footer">
-            <div class="d-flex justify-content-around">
-                {{-- <button wire:click="decrement" type="button" class="btn btn-danger">Dcrease</button>
-            <button wire:click="increment" type="button" class="btn btn-success">Increase</button> --}}
+            <div class="d-flex justify-content-end">
+               {{$employees->links()}}
             </div>
         </div>
     </div>

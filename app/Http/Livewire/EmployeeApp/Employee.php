@@ -9,50 +9,49 @@ use Livewire\WithPagination;
 class Employee extends Component
 {
 
+    use WithPagination;
 
 
-    public  $employees=[] ;
-    public  $employeeName ;
+    public $search = '';
+
+    public  $employeeName;
     public  $employeePhone;
 
-    public $editableId=0;
+    public $editableId = 0;
 
+    protected $queryString = ['search'];
 
-
-
-
-    public function mount()
-    {
-        $this->employees= $this->loadEmployees();
-    }
-
-
-    public function loadEmployees()
-    {
-        return EmployeeAppEmployee::all();
-    }
+    protected $paginationTheme = 'bootstrap';
 
     public function toggleContentEditable($id)
     {
-        $this->editableId=$id;
+        $this->editableId = $id;
     }
 
-    public function save()
-
+    public function updated($property)
     {
-
-        $this->validate();
-
-        foreach ($this->employees as $employee) {
-
-            $employee->save();
-
+        if('search'===$property)
+        {
+            $this->resetPage();
         }
 
+        $this->resetPage();
+
     }
+
 
     public function render()
     {
-        return view('livewire.employee-app.employee');
+
+        $query =  EmployeeAppEmployee::query();
+
+        if ($this->search) {
+
+            $query->where("name", "like", "%{$this->search}%")
+                ->orWhere('phone', 'like', "%{$this->search}%");
+        }
+
+
+        return view('livewire.employee-app.employee', ['employees' => $query->paginate(10)]);
     }
 }
